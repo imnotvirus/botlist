@@ -9,6 +9,9 @@ const Global = createGlobalStyle`
 html{
     font-family: 'Nunito Sans', sans-serif;
 }
-
+body{
+    background-color: #f5f8f9;
+    max-height: 100vh;
+}
 `;
 export default Global;
