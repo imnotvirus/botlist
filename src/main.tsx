@@ -13,9 +13,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<Global />
-			<Header />
 			<BotsProvider>
 				<BrowserRouter>
+					<Header />
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/bot/:shortName" element={<Detail />} />
