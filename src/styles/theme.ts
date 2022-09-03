@@ -7,5 +7,9 @@ export default {
 		text_100: '#738192',
 		text_50: '#607b99',
 		shape: '#fff',
+		lightGray: '#ddd',
+		button: '#2cc3d5',
+		buttonHover: '#2194a2',
+		border: '#d2dfe6',
 	},
 };

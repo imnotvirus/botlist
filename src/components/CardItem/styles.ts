@@ -13,6 +13,10 @@ export const Container = styled.div`
 	background: ${({ theme }) => theme.COLORS.shape};
 	box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
 	border-radius: 7px;
+	transition: 0.5s;
+	&:hover {
+		background: ${({ theme }) => theme.COLORS.lightGray};
+	}
 `;
 export const Name = styled.h3`
 	font-style: normal;
@@ -41,4 +45,15 @@ export const StarContainer = styled.button`
 	background: transparent;
 	border: none;
 	cursor: pointer;
+`;
+export const ContainerInfo = styled.button`
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	background: transparent;
+	border: none;
 `;

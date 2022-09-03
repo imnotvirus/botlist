@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card from '../../components/Card';
+import CardItem from '../../components/CardItem';
 import { useBots } from '../../hooks/Bots';
 
 import CardIcon from '../../assets/CardIcon';
@@ -9,6 +9,7 @@ import {
 	ButtonOrder,
 	Container,
 	ContainerBots,
+	ContainerButtonsDisplay,
 	ContainerFilter,
 	FavoriteTitle,
 	HeaderFilter,
@@ -49,12 +50,14 @@ const Home: React.FC = () => {
 					>
 						Order by Creation
 					</ButtonOrder>
-					<IconButton onClick={() => setDisplay('CARD')}>
-						<CardIcon color={display === 'CARD' ? '#6e7b91' : '#d2dfe6'} />
-					</IconButton>
-					<IconButton onClick={() => setDisplay('LIST')}>
-						<ListIcon color={display === 'LIST' ? '#6e7b91' : '#d2dfe6'} />
-					</IconButton>
+					<ContainerButtonsDisplay>
+						<IconButton onClick={() => setDisplay('CARD')}>
+							<CardIcon color={display === 'CARD' ? '#6e7b91' : '#d2dfe6'} />
+						</IconButton>
+						<IconButton onClick={() => setDisplay('LIST')}>
+							<ListIcon color={display === 'LIST' ? '#6e7b91' : '#d2dfe6'} />
+						</IconButton>
+					</ContainerButtonsDisplay>
 				</ContainerFilter>
 			</HeaderFilter>
 			{favoriteBots.length > 0 && (
@@ -67,7 +70,7 @@ const Home: React.FC = () => {
 							)
 							.map((bot) =>
 								display === 'CARD' ? (
-									<Card key={bot.name} data={bot} isFavorite />
+									<CardItem key={bot.name} data={bot} isFavorite />
 								) : (
 									<ListItem key={bot.name} data={bot} isFavorite />
 								)
@@ -83,7 +86,7 @@ const Home: React.FC = () => {
 					)
 					.map((bot) =>
 						display === 'CARD' ? (
-							<Card key={bot.name} data={bot} />
+							<CardItem key={bot.name} data={bot} />
 						) : (
 							<ListItem key={bot.name} data={bot} />
 						)

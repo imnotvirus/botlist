@@ -10,7 +10,7 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 `;
-export const ContainerInfo = styled.div`
+export const ContainerInfo = styled.button`
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -20,6 +20,12 @@ export const ContainerInfo = styled.div`
 	background: ${({ theme }) => theme.COLORS.shape};
 	box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
 	border-radius: 7px;
+	border: none;
+	cursor: pointer;
+	transition: 0.5s;
+	&:hover {
+		background-color: ${({ theme }) => theme.COLORS.lightGray};
+	}
 `;
 export const Name = styled.h3`
 	font-weight: 600;
