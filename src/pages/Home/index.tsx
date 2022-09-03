@@ -1,0 +1,96 @@
+import React, { useState } from 'react';
+import Card from '../../components/Card';
+import { useBots } from '../../hooks/Bots';
+
+import CardIcon from '../../assets/CardIcon';
+import ListIcon from '../../assets/ListIcon';
+import ListItem from '../../components/ListItem';
+import {
+	ButtonOrder,
+	Container,
+	ContainerBots,
+	ContainerFilter,
+	FavoriteTitle,
+	HeaderFilter,
+	IconButton,
+	InputSearch,
+	Line,
+	TitlePage,
+} from './styles';
+
+const Home: React.FC = () => {
+	const { bots, favoriteBots, setOrderBy } = useBots();
+
+	const [display, setDisplay] = useState<'CARD' | 'LIST'>('CARD');
+	const [search, setSearch] = useState('');
+
+	return (
+		<Container>
+			<HeaderFilter>
+				<TitlePage>My chatbots</TitlePage>
+				<ContainerFilter>
+					<InputSearch
+						type="text"
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						placeholder="Search Bots"
+					/>
+					<ButtonOrder
+						onClick={() => {
+							setOrderBy('name');
+						}}
+					>
+						Order by name
+					</ButtonOrder>
+					<ButtonOrder
+						onClick={() => {
+							setOrderBy('date');
+						}}
+					>
+						Order by Creation
+					</ButtonOrder>
+					<IconButton onClick={() => setDisplay('CARD')}>
+						<CardIcon color={display === 'CARD' ? '#6e7b91' : '#d2dfe6'} />
+					</IconButton>
+					<IconButton onClick={() => setDisplay('LIST')}>
+						<ListIcon color={display === 'LIST' ? '#6e7b91' : '#d2dfe6'} />
+					</IconButton>
+				</ContainerFilter>
+			</HeaderFilter>
+			{favoriteBots.length > 0 && (
+				<>
+					<FavoriteTitle>Favorites</FavoriteTitle>
+					<ContainerBots>
+						{favoriteBots
+							.filter((item) =>
+								item.name.toLowerCase().includes(search.toLowerCase())
+							)
+							.map((bot) =>
+								display === 'CARD' ? (
+									<Card key={bot.name} data={bot} isFavorite />
+								) : (
+									<ListItem key={bot.name} data={bot} isFavorite />
+								)
+							)}
+					</ContainerBots>
+					<Line />
+				</>
+			)}
+			<ContainerBots>
+				{bots
+					.filter((item) =>
+						item.name.toLowerCase().includes(search.toLowerCase())
+					)
+					.map((bot) =>
+						display === 'CARD' ? (
+							<Card key={bot.name} data={bot} />
+						) : (
+							<ListItem key={bot.name} data={bot} />
+						)
+					)}
+			</ContainerBots>
+		</Container>
+	);
+};
+
+export default Home;
