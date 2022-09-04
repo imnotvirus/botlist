@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardItem from '../../components/CardItem';
 import { useBots } from '../../hooks/Bots';
 
@@ -20,10 +20,14 @@ import {
 } from './styles';
 
 const Home: React.FC = () => {
-	const { bots, favoriteBots, setOrderBy } = useBots();
+	const { bots, favoriteBots, setOrderBy, getBotsFromAPI } = useBots();
 
 	const [display, setDisplay] = useState<'CARD' | 'LIST'>('CARD');
 	const [search, setSearch] = useState('');
+	useEffect(() => {
+		getBotsFromAPI();
+		console.log('chamando');
+	}, [getBotsFromAPI]);
 
 	return (
 		<Container>
@@ -38,14 +42,14 @@ const Home: React.FC = () => {
 					/>
 					<ButtonOrder
 						onClick={() => {
-							setOrderBy('name');
+							//setOrderBy('name');
 						}}
 					>
 						Order by name
 					</ButtonOrder>
 					<ButtonOrder
 						onClick={() => {
-							setOrderBy('date');
+							//setOrderBy('date');
 						}}
 					>
 						Order by Creation

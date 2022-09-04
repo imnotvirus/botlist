@@ -27,8 +27,10 @@ export const TitlePage = styled.h1`
 
 	color: ${({ theme }) => theme.COLORS.text_200};
 `;
-export const Line = styled.hr`
-	border: 1px solid ${({ theme }) => theme.COLORS.border};
+export const Line = styled.div`
+	width: 100%;
+	height: 1px;
+	background: ${({ theme }) => theme.COLORS.border};
 	margin: 24px 0;
 `;
 export const HeaderFilter = styled.div`

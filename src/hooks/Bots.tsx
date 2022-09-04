@@ -1,10 +1,4 @@
-import React, {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useState,
-} from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import IBot from '../@types/Bot';
 import { api } from '../services/api';
 
@@ -14,6 +8,7 @@ interface BotsContestProps {
 	handleFavorite: (data: IBot) => void;
 	orderBy: 'name' | 'date';
 	setOrderBy: React.Dispatch<React.SetStateAction<'name' | 'date'>>;
+	getBotsFromAPI: () => Promise<void>;
 }
 const BotsContext = createContext({} as BotsContestProps);
 
@@ -31,6 +26,13 @@ const BotsProvider: React.FC<BotsProviderProps> = ({ children }) => {
 		return [];
 	});
 
+	const getFavorites = useCallback((): IBot[] => {
+		const data = localStorage.getItem('@BLIP:favorites');
+		if (data) {
+			return JSON.parse(data);
+		}
+		return [];
+	}, []);
 	const getBotsFromAPI = useCallback(async () => {
 		try {
 			const response = await api.get<IBot[]>(
@@ -40,18 +42,16 @@ const BotsProvider: React.FC<BotsProviderProps> = ({ children }) => {
 				...item,
 				shortName: item.name.replace(' ', '_').toLowerCase(),
 			}));
-			return ArrayBot;
+
+			const localFavs = getFavorites();
+			const data = ArrayBot.filter(
+				(item) => !localFavs.some((fav) => fav.name === item.name)
+			);
+			setBots(data);
 		} catch (error) {
 			console.log(error);
 		}
-	}, [orderBy]);
-
-	const getFavorites = () => {
-		const data = localStorage.getItem('@BLIP:favorites');
-		if (data) {
-			setFavoriteBots(JSON.parse(data));
-		}
-	};
+	}, [getFavorites, orderBy]);
 
 	const handleFavorite = (data: IBot) => {
 		if (favoriteBots.some((item) => item.name === data.name)) {
@@ -65,27 +65,16 @@ const BotsProvider: React.FC<BotsProviderProps> = ({ children }) => {
 		}
 	};
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const response = await getBotsFromAPI();
-				if (response) {
-					getFavorites();
-					const data = response.filter(
-						(item) =>
-							!favoriteBots.some((favorite) => favorite.name === item.name)
-					);
-					setBots(data);
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	}, [favoriteBots, getBotsFromAPI]);
-
 	return (
 		<BotsContext.Provider
-			value={{ bots, favoriteBots, handleFavorite, orderBy, setOrderBy }}
+			value={{
+				bots,
+				favoriteBots,
+				handleFavorite,
+				orderBy,
+				setOrderBy,
+				getBotsFromAPI,
+			}}
 		>
 			{children}
 		</BotsContext.Provider>
