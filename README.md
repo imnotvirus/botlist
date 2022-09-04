@@ -1,5 +1,6 @@
 <div align="center" id="top"> 
-  <blockquote class="imgur-embed-pub" lang="en" data-id="a/4TKmgAO" data-context="false" ><a href="//imgur.com/a/4TKmgAO"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+  <img src="https://imgur.com/sCn1fBm" alt="botlist" />
+  <img src="https://imgur.com/LHbz9rS" alt="botlist" />
 
   &#xa0;
 
