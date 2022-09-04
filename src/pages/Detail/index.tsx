@@ -63,11 +63,13 @@ const Detail: React.FC = () => {
 	const params = useParams();
 	const [info, setInfo] = useState<Information>();
 	const getInfo = useCallback(async () => {
-		try {
-			const { data } = await api.get(`/${params.shortName}/detail`);
-			setInfo(data);
-		} catch (error) {
-			console.log(error);
+		if (params.shortName) {
+			try {
+				const { data } = await api.get(`/${params.shortName}/details`);
+				setInfo(data);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	}, [params.shortName]);
 
@@ -75,23 +77,25 @@ const Detail: React.FC = () => {
 		getInfo();
 	}, [getInfo]);
 
+	if (!info) {
+		return (
+			<div>
+				<span>loading</span>
+			</div>
+		);
+	}
 	return (
 		<Container>
 			<Header>
 				<ContainerInformationHeader>
-					<BotAvatar src="https://picsum.photos/200/300" alt="" />
+					<BotAvatar src={info.image} alt={info.name} />
 					<ContainerTextInformationHeader>
-						<BotName>{info && info.name ? info.name : 'Botname'}</BotName>
-						<IdBot>
-							id: {info && info.shortName ? info.shortName : 'Botname'}botname
-						</IdBot>
+						<BotName>{info.name}</BotName>
+						<IdBot>id: {info.shortName}</IdBot>
 					</ContainerTextInformationHeader>
 				</ContainerInformationHeader>
 				<CreatedAtBot>
-					created at{' '}
-					{info &&
-						info.created &&
-						new Date(info.created).toLocaleDateString('pt-BR')}
+					created at {new Date(info.created).toLocaleDateString('pt-BR')}
 				</CreatedAtBot>
 			</Header>
 			<Line />
@@ -112,7 +116,11 @@ const Detail: React.FC = () => {
 							<Row>
 								<BotAvatar src={ActiveUserImg} alt="active user" />
 								<Column mr={10}>
-									<Count>1.000</Count>
+									<Count>
+										{info.analytics.user.actived
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+									</Count>
 									<CountLabel>Usuários ativos</CountLabel>
 								</Column>
 							</Row>
@@ -123,7 +131,11 @@ const Detail: React.FC = () => {
 							<Row>
 								<BotAvatar src={ReceivedMessageImg} alt="received message" />
 								<Column mr={10}>
-									<Count>1.000</Count>
+									<Count>
+										{info.analytics.message.received
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+									</Count>
 									<CountLabel>Mensagens recebidas</CountLabel>
 								</Column>
 							</Row>
@@ -132,7 +144,11 @@ const Detail: React.FC = () => {
 							<Row>
 								<BotAvatar src={SendedMessageImg} alt="sended message" />
 								<Column mr={10}>
-									<Count>1.000</Count>
+									<Count>
+										{info.analytics.message.sent
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+									</Count>
 									<CountLabel>Mensagens enviadas</CountLabel>
 								</Column>
 							</Row>

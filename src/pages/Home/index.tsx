@@ -26,7 +26,6 @@ const Home: React.FC = () => {
 	const [search, setSearch] = useState('');
 	useEffect(() => {
 		getBotsFromAPI();
-		console.log('chamando');
 	}, [getBotsFromAPI]);
 
 	return (
@@ -42,14 +41,14 @@ const Home: React.FC = () => {
 					/>
 					<ButtonOrder
 						onClick={() => {
-							//setOrderBy('name');
+							setOrderBy('name');
 						}}
 					>
 						Order by name
 					</ButtonOrder>
 					<ButtonOrder
 						onClick={() => {
-							//setOrderBy('date');
+							setOrderBy('date');
 						}}
 					>
 						Order by Creation
