@@ -1,6 +1,6 @@
 <div align="center" id="top"> 
-  <img src="https://imgur.com/sCn1fBm" alt="botlist" />
-  <img src="https://imgur.com/LHbz9rS" alt="botlist" />
+  <img src="https://i.imgur.com/sCn1fBm.png" alt="botlist" />
+  <img src="https://i.imgur.com/LHbz9rS.png" alt="botlist" />
 
   &#xa0;
 
