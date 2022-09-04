@@ -1,9 +1,9 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="botlist" />
+  <blockquote class="imgur-embed-pub" lang="en" data-id="a/4TKmgAO" data-context="false" ><a href="//imgur.com/a/4TKmgAO"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
   &#xa0;
 
-  <!-- <a href="https://botlist.netlify.app">Demo</a> -->
+  <a href="https://botlist-fawn.vercel.app/">Demo</a>
 </div>
 
 <h1 align="center">botlist</h1>
