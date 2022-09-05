@@ -82,19 +82,21 @@ const Home: React.FC = () => {
 					<Line />
 				</>
 			)}
-			<ContainerBots>
-				{bots
-					.filter((item) =>
-						item.name.toLowerCase().includes(search.toLowerCase())
-					)
-					.map((bot) =>
-						display === 'CARD' ? (
-							<CardItem key={bot.name} data={bot} />
-						) : (
-							<ListItem key={bot.name} data={bot} />
+			{bots.length > 0 && (
+				<ContainerBots>
+					{bots
+						.filter((item) =>
+							item.name.toLowerCase().includes(search.toLowerCase())
 						)
-					)}
-			</ContainerBots>
+						.map((bot) =>
+							display === 'CARD' ? (
+								<CardItem key={bot.name} data={bot} />
+							) : (
+								<ListItem key={bot.name} data={bot} />
+							)
+						)}
+				</ContainerBots>
+			)}
 		</Container>
 	);
 };
