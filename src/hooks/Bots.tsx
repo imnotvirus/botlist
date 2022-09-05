@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext, useState } from 'react';
 import IBot from '../@types/Bot';
 import { api } from '../services/api';
 
-interface BotsContestProps {
+export interface BotsContextProps {
 	bots: IBot[];
 	favoriteBots: IBot[];
 	handleFavorite: (data: IBot) => void;
@@ -10,7 +10,7 @@ interface BotsContestProps {
 	setOrderBy: React.Dispatch<React.SetStateAction<'name' | 'date'>>;
 	getBotsFromAPI: () => Promise<void>;
 }
-const BotsContext = createContext({} as BotsContestProps);
+export const BotsContext = createContext({} as BotsContextProps);
 
 interface BotsProviderProps {
 	children: React.ReactNode;
