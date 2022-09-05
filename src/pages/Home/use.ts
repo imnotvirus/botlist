@@ -1,21 +1,11 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
-import IBot from '../@types/Bot';
-import { api } from '../services/api';
+import { useCallback, useEffect, useState } from 'react';
+import IBot from '../../@types/Bot';
+import { api } from '../../services/api';
 
-export interface BotsContextProps {
-	bots: IBot[];
-	favoriteBots: IBot[];
-	handleFavorite: (data: IBot) => void;
-	orderBy: 'name' | 'date';
-	setOrderBy: React.Dispatch<React.SetStateAction<'name' | 'date'>>;
-	getBotsFromAPI: () => Promise<void>;
-}
-export const BotsContext = createContext({} as BotsContextProps);
+export const useHome = () => {
+	const [display, setDisplay] = useState<'CARD' | 'LIST'>('CARD');
+	const [search, setSearch] = useState('');
 
-interface BotsProviderProps {
-	children: React.ReactNode;
-}
-const BotsProvider: React.FC<BotsProviderProps> = ({ children }) => {
 	const [bots, setBots] = useState<IBot[]>([]);
 	const [orderBy, setOrderBy] = useState<'name' | 'date'>('name');
 	const [favoriteBots, setFavoriteBots] = useState<IBot[]>(() => {
@@ -65,23 +55,18 @@ const BotsProvider: React.FC<BotsProviderProps> = ({ children }) => {
 		}
 	};
 
-	return (
-		<BotsContext.Provider
-			value={{
-				bots,
-				favoriteBots,
-				handleFavorite,
-				orderBy,
-				setOrderBy,
-				getBotsFromAPI,
-			}}
-		>
-			{children}
-		</BotsContext.Provider>
-	);
-};
+	useEffect(() => {
+		getBotsFromAPI();
+	}, [getBotsFromAPI]);
 
-export const useBots = () => {
-	return useContext(BotsContext);
+	return {
+		search,
+		setSearch,
+		setOrderBy,
+		handleFavorite,
+		display,
+		setDisplay,
+		favoriteBots,
+		bots,
+	};
 };
-export default BotsProvider;

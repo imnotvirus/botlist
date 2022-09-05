@@ -1,7 +1,6 @@
 import IBot from '../../@types/Bot';
 import Star from '../../assets/Star';
 import StarOutline from '../../assets/StarOutline';
-import { useBots } from '../../hooks/Bots';
 import {
 	Avatar,
 	Container,
@@ -14,10 +13,9 @@ import {
 interface CardItemProps {
 	data: IBot;
 	isFavorite?: boolean;
+	handleFavorite: (arg0: IBot) => void;
 }
-const CardItem = ({ data, isFavorite }: CardItemProps) => {
-	const { handleFavorite } = useBots();
-
+const CardItem = ({ data, isFavorite, handleFavorite }: CardItemProps) => {
 	return (
 		<Container>
 			<StarContainer

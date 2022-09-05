@@ -1,10 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import ActiveUserImg from '../../assets/ActiveUsers.png';
 import BalloonImg from '../../assets/Balloon.png';
 import ReceivedMessageImg from '../../assets/ReceivedMessage.png';
 import SendedMessageImg from '../../assets/SendedMessage.png';
-import { api } from '../../services/api';
 import { Line } from '../Home/styles';
 import {
 	AccountStatus,
@@ -33,49 +31,10 @@ import {
 	SecondLineBox,
 	TextContainer,
 } from './styles';
-interface Information {
-	shortName: string;
-	description: string;
-	image: string;
-	updated: string;
-	culture: string;
-	analytics: Analytics;
-	name: string;
-	type: string;
-	created: string;
-}
+import { useDetail } from './use';
 
-interface Analytics {
-	user: User;
-	message: Message;
-}
-
-interface Message {
-	received: number;
-	sent: number;
-}
-
-interface User {
-	total: number;
-	actived: number;
-}
 const Detail: React.FC = () => {
-	const params = useParams();
-	const [info, setInfo] = useState<Information>();
-	const getInfo = useCallback(async () => {
-		if (params.shortName) {
-			try {
-				const { data } = await api.get(`/${params.shortName}/details`);
-				setInfo(data);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-	}, [params.shortName]);
-
-	useEffect(() => {
-		getInfo();
-	}, [getInfo]);
+	const { info } = useDetail();
 
 	if (!info) {
 		return (

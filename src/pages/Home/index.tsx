@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CardItem from '../../components/CardItem';
-import { useBots } from '../../hooks/Bots';
 
 import CardIcon from '../../assets/CardIcon';
 import ListIcon from '../../assets/ListIcon';
@@ -18,15 +17,19 @@ import {
 	Line,
 	TitlePage,
 } from './styles';
+import { useHome } from './use';
 
 const Home: React.FC = () => {
-	const { bots, favoriteBots, setOrderBy, getBotsFromAPI } = useBots();
-
-	const [display, setDisplay] = useState<'CARD' | 'LIST'>('CARD');
-	const [search, setSearch] = useState('');
-	useEffect(() => {
-		getBotsFromAPI();
-	}, [getBotsFromAPI]);
+	const {
+		search,
+		setSearch,
+		setOrderBy,
+		handleFavorite,
+		display,
+		setDisplay,
+		favoriteBots,
+		bots,
+	} = useHome();
 
 	return (
 		<Container>
@@ -73,9 +76,19 @@ const Home: React.FC = () => {
 							)
 							.map((bot) =>
 								display === 'CARD' ? (
-									<CardItem key={bot.name} data={bot} isFavorite />
+									<CardItem
+										handleFavorite={handleFavorite}
+										key={bot.name}
+										data={bot}
+										isFavorite
+									/>
 								) : (
-									<ListItem key={bot.name} data={bot} isFavorite />
+									<ListItem
+										handleFavorite={handleFavorite}
+										key={bot.name}
+										data={bot}
+										isFavorite
+									/>
 								)
 							)}
 					</ContainerBots>
@@ -90,9 +103,17 @@ const Home: React.FC = () => {
 						)
 						.map((bot) =>
 							display === 'CARD' ? (
-								<CardItem key={bot.name} data={bot} />
+								<CardItem
+									handleFavorite={handleFavorite}
+									key={bot.name}
+									data={bot}
+								/>
 							) : (
-								<ListItem key={bot.name} data={bot} />
+								<ListItem
+									handleFavorite={handleFavorite}
+									key={bot.name}
+									data={bot}
+								/>
 							)
 						)}
 				</ContainerBots>

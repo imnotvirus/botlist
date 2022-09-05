@@ -1,6 +1,5 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import BotsProvider from '../../hooks/Bots';
 import Detail from '../../pages/Detail';
 import { api } from '../../services/api';
 import theme from '../../styles/theme';
@@ -42,9 +41,7 @@ describe('Detail', () => {
 	it('call api with correct url', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const name = await findByText('Billy Hargrove');
@@ -56,9 +53,7 @@ describe('Detail', () => {
 	it('show Bot name', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const name = await findByText('Billy Hargrove');
@@ -67,9 +62,7 @@ describe('Detail', () => {
 	it('show received messages count', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const label = await findByText('Mensagens recebidas');
@@ -80,9 +73,7 @@ describe('Detail', () => {
 	it('show sent messages count', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const label = await findByText('Mensagens enviadas');
@@ -92,9 +83,7 @@ describe('Detail', () => {
 	it('show the count of active users', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const label = await findByText('Usuários ativos');
@@ -104,9 +93,7 @@ describe('Detail', () => {
 	it('show the created at', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const label = await findByText('created at 01/01/2020');
@@ -116,9 +103,7 @@ describe('Detail', () => {
 	it('show the id', async () => {
 		const { findByText } = render(
 			<ThemeProvider theme={theme}>
-				<BotsProvider>
-					<Detail />
-				</BotsProvider>
+				<Detail />
 			</ThemeProvider>
 		);
 		const label = await findByText('id: billy_hargrove');
