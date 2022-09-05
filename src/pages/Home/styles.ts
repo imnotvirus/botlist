@@ -4,8 +4,8 @@ export const Container = styled.div`
 	display: flex;
 	padding: 40px 60px;
 	flex-direction: column;
-	margin-top: 44px;
-
+	max-width: 1366px;
+	margin: 44px auto auto;
 	background-color: ${({ theme }) => theme.COLORS.background};
 `;
 export const FloatAddButton = styled.button`
