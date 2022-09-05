@@ -11,6 +11,7 @@ import {
 	ContainerButtonsDisplay,
 	ContainerFilter,
 	FavoriteTitle,
+	FloatAddButton,
 	HeaderFilter,
 	IconButton,
 	InputSearch,
@@ -33,6 +34,7 @@ const Home: React.FC = () => {
 
 	return (
 		<Container>
+			<FloatAddButton>+</FloatAddButton>
 			<HeaderFilter>
 				<TitlePage>My chatbots</TitlePage>
 				<ContainerFilter>

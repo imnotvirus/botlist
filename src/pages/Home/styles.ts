@@ -8,6 +8,25 @@ export const Container = styled.div`
 
 	background-color: ${({ theme }) => theme.COLORS.background};
 `;
+export const FloatAddButton = styled.button`
+	position: fixed;
+	bottom: 16px;
+	right: 32px;
+	width: 56px;
+	height: 56px;
+	border: none;
+	background: ${({ theme }) => theme.COLORS.button};
+	border-radius: 28px;
+	color: #fff;
+	font-size: 32px;
+	z-index: 2;
+	box-shadow: 0px 2px 12px rgba(96, 123, 153, 0.15);
+	cursor: pointer;
+	transition: 0.5s;
+	&:hover {
+		background: ${({ theme }) => theme.COLORS.buttonHover};
+	}
+`;
 export const ContainerBots = styled.div`
 	display: flex;
 	flex-wrap: wrap;
