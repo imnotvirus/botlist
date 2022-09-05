@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -10,7 +11,7 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 `;
-export const ContainerInfo = styled.button`
+export const ContainerInfo = styled(Link)`
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -23,6 +24,7 @@ export const ContainerInfo = styled.button`
 	border: none;
 	cursor: pointer;
 	transition: 0.5s;
+	text-decoration: none;
 	&:hover {
 		background-color: ${({ theme }) => theme.COLORS.lightGray};
 	}

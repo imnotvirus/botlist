@@ -1,7 +1,6 @@
-import React from 'react';
 import IBot from '../../@types/Bot';
-import { ReactComponent as Star } from '../../assets/Star.svg';
-import { ReactComponent as StarOutline } from '../../assets/StarOutline.svg';
+import Star from '../../assets/Star';
+import StarOutline from '../../assets/StarOutline';
 import { useBots } from '../../hooks/Bots';
 import {
 	Avatar,
@@ -16,7 +15,7 @@ interface CardItemProps {
 	data: IBot;
 	isFavorite?: boolean;
 }
-const CardItem: React.FC<CardItemProps> = ({ data, isFavorite }) => {
+const CardItem = ({ data, isFavorite }: CardItemProps) => {
 	const { handleFavorite } = useBots();
 
 	return (
