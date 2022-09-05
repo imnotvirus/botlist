@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -46,7 +47,7 @@ export const StarContainer = styled.button`
 	border: none;
 	cursor: pointer;
 `;
-export const ContainerInfo = styled.button`
+export const ContainerInfo = styled(Link)`
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -54,6 +55,5 @@ export const ContainerInfo = styled.button`
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	background: transparent;
-	border: none;
+	text-decoration: none;
 `;

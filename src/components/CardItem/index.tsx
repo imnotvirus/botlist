@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import IBot from '../../@types/Bot';
 import { ReactComponent as Star } from '../../assets/Star.svg';
 import { ReactComponent as StarOutline } from '../../assets/StarOutline.svg';
@@ -19,12 +18,7 @@ interface CardItemProps {
 }
 const CardItem: React.FC<CardItemProps> = ({ data, isFavorite }) => {
 	const { handleFavorite } = useBots();
-	const navigate = useNavigate();
-	const handleNavigateToDetail = () => {
-		navigate({
-			pathname: `/bot/${data.shortName}`,
-		});
-	};
+
 	return (
 		<Container>
 			<StarContainer
@@ -34,7 +28,7 @@ const CardItem: React.FC<CardItemProps> = ({ data, isFavorite }) => {
 			>
 				{isFavorite ? <Star /> : <StarOutline />}
 			</StarContainer>
-			<ContainerInfo onClick={handleNavigateToDetail}>
+			<ContainerInfo to={`/bot/${data.shortName}`}>
 				<Avatar src={`https://robohash.org/${data.name}`} />
 				<Name>{data.name}</Name>
 				<Type>{data.type}</Type>
